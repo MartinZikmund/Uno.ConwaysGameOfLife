@@ -8,5 +8,7 @@ namespace ConwaysGameOfLife.Shared.Models
     {
         Classic,
         CatMouse,
+        Bacteria,
+        FireWater
     }
 }

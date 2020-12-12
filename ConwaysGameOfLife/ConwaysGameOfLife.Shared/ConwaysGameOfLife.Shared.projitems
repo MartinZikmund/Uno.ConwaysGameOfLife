@@ -39,17 +39,19 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="$(MSBuildThisFileDirectory)Assets\Classic\alive.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\CatMouse\dead.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\CatMouse\alive.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\Classic\dead.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\SharedAssets.md" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\store.png" />
+    <None Include="$(MSBuildThisFileDirectory)Assets\SharedAssets.md" />
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Assets\Classic\" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Bacteria_alive.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Bacteria_dead.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\CatMouse_alive.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\CatMouse_dead.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Classic_alive.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Classic_dead.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\FireWater_alive.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\FireWater_dead.png" />
   </ItemGroup>
 </Project>

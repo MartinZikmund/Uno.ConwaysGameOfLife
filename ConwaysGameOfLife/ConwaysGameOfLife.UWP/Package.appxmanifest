@@ -7,11 +7,11 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="14a48535-5b9f-4d13-a774-e59e3b453135"
-    Publisher="CN=Martin"
+    Name="a6403253-f800-48e1-a10c-fc15856ed0e4"
+    Publisher="CN=marti"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="45122b95-e03f-4bd6-9b1e-e7113b8013e7" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="eb88091f-1bb2-4d9c-aa36-d3dac2168584" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>ConwaysGameOfLife</DisplayName>

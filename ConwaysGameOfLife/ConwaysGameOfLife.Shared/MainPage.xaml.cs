@@ -152,8 +152,8 @@ namespace ConwaysGameOfLife
 
         private void UpdateBitmaps()
         {
-            _aliveBitmap = new BitmapImage(new Uri($"ms-appx:///Assets/{_currentTheme}/alive.png"));
-            _deadBitmap = new BitmapImage(new Uri($"ms-appx:///Assets/{_currentTheme}/dead.png"));
+            _aliveBitmap = new BitmapImage(new Uri($"ms-appx:///Assets/{_currentTheme}_alive.png"));
+            _deadBitmap = new BitmapImage(new Uri($"ms-appx:///Assets/{_currentTheme}_dead.png"));
         }
 
         private Image GetCell(int row, int column)
