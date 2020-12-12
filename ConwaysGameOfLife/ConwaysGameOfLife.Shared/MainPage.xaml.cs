@@ -32,8 +32,20 @@ namespace ConwaysGameOfLife
         public GameTheme[] Themes { get; } = new GameTheme[]
         {
             GameTheme.Classic,
-            GameTheme.CatMouse
+            GameTheme.Bacteria,
+            GameTheme.CatMouse,
+            GameTheme.FireWater
         };
+
+        public GameTheme CurrentTheme
+        {
+            get => _currentTheme; 
+            set
+            {
+                _currentTheme = value;
+                UpdateBitmaps();
+            }
+        }
 
         private void RedrawTimer_Tick(object sender, object e)
         {
@@ -95,7 +107,7 @@ namespace ConwaysGameOfLife
                 for (var column = 0; column < _gameState.Size; column++)
                 {
                     var cell = GetCell(row, column);
-                    cell.Source = _gameState.Cells[row, column] == CellState.Alive ? 
+                    cell.Source = _gameState.Cells[row, column] == CellState.Alive ?
                         _aliveBitmap : _deadBitmap;
                 }
             }
@@ -110,7 +122,7 @@ namespace ConwaysGameOfLife
                 for (var column = 0; column < _gameState.Size; column++)
                 {
                     var cell = GetCell(row, column);
-                    cell.Source = _gameState.Cells[row, column] == CellState.Alive ? 
+                    cell.Source = _gameState.Cells[row, column] == CellState.Alive ?
                         _aliveBitmap : _deadBitmap;
                     GameCanvas.Children.Add(cell);
                 }
@@ -146,7 +158,6 @@ namespace ConwaysGameOfLife
 
         private void Theme_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            _currentTheme = (GameTheme)ThemeComboBox.SelectedIndex;
             UpdateBitmaps();
         }
 
@@ -186,7 +197,7 @@ namespace ConwaysGameOfLife
             int row = index / _gameState.Size;
             int column = index % _gameState.Size;
 
-            _gameState.Cells[row, column] = _gameState.Cells[row, column] == CellState.Alive ? 
+            _gameState.Cells[row, column] = _gameState.Cells[row, column] == CellState.Alive ?
                     CellState.Dead : CellState.Alive;
             RedrawBoard();
         }
