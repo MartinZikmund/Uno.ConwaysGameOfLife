@@ -50,7 +50,7 @@
             <Button
                 Grid.Column="2"
                 Click="{x:Bind NextGeneration}"
-                Content="Next step" />
+                Content="Next generation" />
 
             <StackPanel Grid.Row="1" Spacing="4">
               <TextBlock Text="Board size" />
