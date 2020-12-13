@@ -16,6 +16,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <TextBlock
             FontSize="20"
@@ -83,5 +84,7 @@
             SizeChanged="{x:Bind LayoutGameBoard}">
             <Canvas x:Name="GameCanvas" />
         </Border>
+
+      <HyperlinkButton Grid.Row="3" Content="Icons by Icons8.com" NavigateUri="http://www.icons8.com" HorizontalAlignment="Center" />
     </Grid>
 </Page>
