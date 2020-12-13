@@ -5,7 +5,7 @@
     xmlns:controls="using:Microsoft.UI.Xaml.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:ConwaysGameOfLife"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"    
     mc:Ignorable="d">
 
     <Grid
@@ -25,15 +25,16 @@
         <Grid
             Grid.Row="1"
             ColumnSpacing="8"
-            RowSpacing="8">
+            RowSpacing="8"
+            HorizontalAlignment="Left">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="120" />
-                <ColumnDefinition Width="120" />
-                <ColumnDefinition Width="120" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
             <Button
@@ -47,18 +48,18 @@
                 Content="Clear" />
             <Button
                 Grid.Column="2"
-                HorizontalAlignment="Stretch"
                 Click="{x:Bind NextGeneration}"
-                Content="Next generation" />
+                Content="Next step" />
 
-            <controls:NumberBox
-                x:Name="BoardSizeNumberBox"
-                Grid.Row="1"
-                Header="Board size"
-                Maximum="50"
-                Minimum="3"
-                SpinButtonPlacementMode="Inline"
-                Value="10" />
+            <StackPanel Grid.Row="1" Spacing="4">
+              <TextBlock Text="Board size" />
+              <controls:NumberBox
+                  x:Name="BoardSizeNumberBox"                                   
+                  Maximum="50"
+                  Minimum="3"
+                  SpinButtonPlacementMode="Inline"
+                  Value="10" />
+            </StackPanel>
             <ComboBox
                 x:Name="ThemeComboBox"
                 Grid.Row="1"

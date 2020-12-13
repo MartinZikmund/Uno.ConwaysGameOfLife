@@ -17,9 +17,6 @@
     <UpToDateCheckInput Include="..\ConwaysGameOfLife.Shared\**\*.xaml" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="Assets\Fonts\uno-fluentui-assets.ttf" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Assets\Fonts\uno-fluentui-assets.ttf" />
   </ItemGroup>
   <ItemGroup>

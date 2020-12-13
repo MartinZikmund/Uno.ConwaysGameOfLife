@@ -15,7 +15,7 @@ namespace ConwaysGameOfLife
             Interval = TimeSpan.FromSeconds(1)
         };
 
-        private GameState _gameState = null;
+        private GameState _gameState;
         private GameTheme _currentTheme = GameTheme.Classic;
 
         private BitmapImage _aliveBitmap;
@@ -25,6 +25,7 @@ namespace ConwaysGameOfLife
         {
             this.InitializeComponent();
             UpdateBitmaps();
+            StartNewGame();
             _timer.Tick += RedrawTimer_Tick;
         }
 
@@ -43,6 +44,7 @@ namespace ConwaysGameOfLife
             {
                 _currentTheme = value;
                 UpdateBitmaps();
+                RedrawBoard();
             }
         }
 
@@ -124,11 +126,6 @@ namespace ConwaysGameOfLife
 
         private void LayoutGameBoard()
         {
-            if (_gameState == null)
-            {
-                return;
-            }
-
             var minDimension = Math.Min(GameCanvasContainer.ActualHeight, GameCanvasContainer.ActualWidth);
             var cellSize = (int)minDimension / _gameState.Size;
             // make cell size a multiple of 4 for proper scaling
