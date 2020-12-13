@@ -1,7 +1,7 @@
 ﻿var UnoAppManifest = {
 
     splashScreenImage: "Assets/SplashScreen.png",
-    splashScreenColor: "#0078D7",
+    splashScreenColor: "#1F1F1F",
     displayName: "Conway's Game Of Life in Uno Platform"
 
 }
