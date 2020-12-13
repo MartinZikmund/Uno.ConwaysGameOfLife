@@ -25,13 +25,17 @@
                 <ColumnDefinition Width="140" />
                 <ColumnDefinition Width="140" />
             </Grid.ColumnDefinitions>
-            <Button Click="StartGame_Click"  Grid.Row="0" HorizontalAlignment="Stretch" CornerRadius="2" Content="Start new game" />
+          
+            <Button Click="StartGame_Click" HorizontalAlignment="Stretch" CornerRadius="2" Content="Start new game" />
+            <Button Click="Randomize_Click" Grid.Column="1" HorizontalAlignment="Stretch" CornerRadius="2" Content="Randomize" />
+            <Button Click="NextGeneration_Click" Grid.Column="2" Content="Next generation" />
+          
             <controls:NumberBox SpinButtonPlacementMode="Inline" x:Name="BoardSizeNumberBox" Minimum="3" Maximum="50" Value="10" Grid.Row="1" Header="Board size" />
-            <Button Click="Randomize_Click"  Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" CornerRadius="2" Content="Randomize" />
             <ComboBox x:Name="ThemeComboBox" ItemsSource="{x:Bind Themes}" SelectedItem="{x:Bind CurrentTheme, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" Header="Theme" HorizontalAlignment="Stretch" />
-            <Button Click="NextGeneration_Click" Grid.Column="2" Grid.Row="0" Content="Next generation" />
             <ToggleSwitch x:Name="AutoPlayToggleSwitch" Toggled="AutoPlayToggleSwitch_OnToggled" Header="Auto-play" Grid.Column="2" Grid.Row="1"  />
+          
         </Grid>
+      
         <Border SizeChanged="GameCanvasContainer_OnSizeChanged" Grid.Row="2" x:Name="GameCanvasContainer">
             <Canvas x:Name="GameCanvas" />
         </Border>

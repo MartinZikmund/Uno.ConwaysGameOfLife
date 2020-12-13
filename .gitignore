@@ -349,3 +349,4 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+/ConwaysGameOfLife/ConwaysGameOfLife.Wasm/Properties/ServiceDependencies/unogameoflife - Web Deploy/profile.arm.json

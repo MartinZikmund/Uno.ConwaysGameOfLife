@@ -67,7 +67,7 @@ namespace ConwaysGameOfLife
         {
             if (_gameState != null)
             {
-                LayoutGameBoard(_gameState.Size);
+                LayoutGameBoard();
             }
         }
 
@@ -91,7 +91,7 @@ namespace ConwaysGameOfLife
                 _gameState = new GameState(boardSize);
                 _gameState.Randomize();
                 PrepareGrid();
-                LayoutGameBoard(_gameState.Size);
+                LayoutGameBoard();
             }
             else
             {
@@ -129,8 +129,13 @@ namespace ConwaysGameOfLife
             }
         }
 
-        private void LayoutGameBoard(int gameSize)
+        private void LayoutGameBoard()
         {
+            if (_gameState == null)
+            {
+                return;
+            }
+
             var minDimension = Math.Min(GameCanvasContainer.ActualHeight, GameCanvasContainer.ActualWidth);
             var cellSize = (int)minDimension / _gameState.Size;
             // make cell size a multiple of 4 for proper scaling
@@ -201,7 +206,5 @@ namespace ConwaysGameOfLife
                     CellState.Dead : CellState.Alive;
             RedrawBoard();
         }
-
-
     }
 }

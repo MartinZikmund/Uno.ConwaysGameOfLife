@@ -4,7 +4,8 @@ namespace ConwaysGameOfLife.Shared.Models
 {
     public class GameState
     {
-        private Random _random = new Random();
+        private readonly Random _random = new Random();
+
 
         public GameState(int size)
         {
@@ -27,36 +28,50 @@ namespace ConwaysGameOfLife.Shared.Models
             }
         }
 
+        private CellState[,] _nextGeneration = null;
+
         public void Tick()
         {
-            var nextGeneration = new CellState[Size, Size];
+            _nextGeneration = _nextGeneration ?? new CellState[Size, Size];
 
             for (int row = 0; row < Size; row++)
             {
                 for (int column = 0; column < Size; column++)
                 {
                     var aliveNeighbors = CountAliveNeighbors(row, column);
+                    var currentState = Cells[row, column];
 
-                    if (aliveNeighbors < 2)
+                    CellState nextState = Cells[row, column];
+
+                    if (currentState == CellState.Alive && aliveNeighbors < 2)
                     {
-                        nextGeneration[row, column] = CellState.Dead;
+                        // Rule 1 - Underpopulation
+                        nextState = CellState.Dead;
                     }
-                    else if (aliveNeighbors == 3)
+                    else if (
+                        currentState == CellState.Alive && 
+                        (aliveNeighbors == 2 || aliveNeighbors <= 3))
                     {
-                        nextGeneration[row, column] = CellState.Alive;
+                        // Rule 2
+                        nextState = CellState.Alive;
                     }
-                    else if (aliveNeighbors > 3)
+                    else if (currentState == CellState.Alive && aliveNeighbors > 3)
                     {
-                        nextGeneration[row, column] = CellState.Dead;
+                        // Rule 3 - Overpopulation
+                        nextState = CellState.Dead;
                     }
-                    else
+                    else if (currentState == CellState.Dead && aliveNeighbors == 3)
                     {
-                        nextGeneration[row, column] = Cells[row, column];
+                        // Rule 4 - Reproduction
+                        nextState = CellState.Alive;
                     }
+
+                    _nextGeneration[row, column] = nextState;
                 }
             }
 
-            Cells = nextGeneration;
+            // Swap!
+            (Cells, _nextGeneration) = (_nextGeneration, Cells);
         }
 
         private int CountAliveNeighbors(int row, int column)
