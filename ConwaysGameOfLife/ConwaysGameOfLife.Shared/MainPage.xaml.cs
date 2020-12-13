@@ -65,16 +65,12 @@ namespace ConwaysGameOfLife
             var boardSize = (int)BoardSizeNumberBox.Value;
             if (_gameState?.Size != boardSize)
             {
-                _gameState = new GameState(boardSize);
-                _gameState.Randomize();
+                _gameState = new GameState(boardSize);        
                 PrepareGrid();
                 LayoutGameBoard();
             }
-            else
-            {
-                _gameState.Randomize();
-                RedrawBoard();
-            }
+            _gameState.Randomize();
+            RedrawBoard();
         }
 
         private void Clear()
@@ -124,6 +120,29 @@ namespace ConwaysGameOfLife
             }
         }
 
+        private Image GetCell(int row, int column)
+        {
+            var index = row * _gameState.Size + column;
+            return GetCell(index);
+        }
+
+        private Image GetCell(int order)
+        {
+            while (_cells.Count <= order)
+            {
+                _cells.Add(CreateCell());
+            }
+
+            return _cells[order];
+        }
+
+        private Image CreateCell()
+        {
+            var cell = new Image();
+            cell.Tapped += OnCellTapped;
+            return cell;
+        }
+
         private void LayoutGameBoard()
         {
             var minDimension = Math.Min(GameCanvasContainer.ActualHeight, GameCanvasContainer.ActualWidth);
@@ -155,32 +174,9 @@ namespace ConwaysGameOfLife
         {
             _aliveBitmap = new BitmapImage(new Uri($"ms-appx:///Assets/{_currentTheme}_alive.png"));
             _deadBitmap = new BitmapImage(new Uri($"ms-appx:///Assets/{_currentTheme}_dead.png"));
-        }
+        }        
 
-        private Image GetCell(int row, int column)
-        {
-            var index = row * _gameState.Size + column;
-            return GetCell(index);
-        }
-
-        private Image GetCell(int order)
-        {
-            while (_cells.Count <= order)
-            {
-                _cells.Add(CreateCell());
-            }
-
-            return _cells[order];
-        }
-
-        private Image CreateCell()
-        {
-            var cell = new Image();
-            cell.Tapped += Cell_Tapped;
-            return cell;
-        }
-
-        private void Cell_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        private void OnCellTapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
         {
             var index = _cells.IndexOf((Image)sender);
 
