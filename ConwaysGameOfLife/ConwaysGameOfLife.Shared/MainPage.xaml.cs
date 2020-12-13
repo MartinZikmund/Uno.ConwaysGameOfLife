@@ -1,10 +1,9 @@
-﻿using System;
+﻿using ConwaysGameOfLife.Shared.Models;
+using System;
 using System.Collections.Generic;
-using Windows.System.RemoteSystems;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
-using ConwaysGameOfLife.Shared.Models;
 
 namespace ConwaysGameOfLife
 {
@@ -39,7 +38,7 @@ namespace ConwaysGameOfLife
 
         public GameTheme CurrentTheme
         {
-            get => _currentTheme; 
+            get => _currentTheme;
             set
             {
                 _currentTheme = value;
@@ -47,31 +46,7 @@ namespace ConwaysGameOfLife
             }
         }
 
-        private void RedrawTimer_Tick(object sender, object e)
-        {
-            _gameState?.Tick();
-            RedrawBoard();
-        }
-
-        private void StartGame_Click(object sender, RoutedEventArgs e) => StartNewGame();
-
-        private void Randomize_Click(object sender, RoutedEventArgs e) => _gameState?.Randomize();
-
-        private void NextGeneration_Click(object sender, RoutedEventArgs e)
-        {
-            _gameState?.Tick();
-            RedrawBoard();
-        }
-
-        private void GameCanvasContainer_OnSizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            if (_gameState != null)
-            {
-                LayoutGameBoard();
-            }
-        }
-
-        private void AutoPlayToggleSwitch_OnToggled(object sender, RoutedEventArgs e)
+        private void AutoPlayToggled()
         {
             if (AutoPlayToggleSwitch.IsOn)
             {
@@ -100,6 +75,18 @@ namespace ConwaysGameOfLife
             }
         }
 
+        private void Clear()
+        {
+            _gameState?.Clear();
+            RedrawBoard();
+        }
+
+        private void NextGeneration()
+        {
+            _gameState?.Tick();
+            RedrawBoard();
+        }
+
         private void RedrawBoard()
         {
             for (var row = 0; row < _gameState.Size; row++)
@@ -111,6 +98,12 @@ namespace ConwaysGameOfLife
                         _aliveBitmap : _deadBitmap;
                 }
             }
+        }
+
+        private void RedrawTimer_Tick(object sender, object e)
+        {
+            _gameState?.Tick();
+            RedrawBoard();
         }
 
         private void PrepareGrid()
@@ -159,11 +152,6 @@ namespace ConwaysGameOfLife
                     cell.Width = cellSize - 1;
                 }
             }
-        }
-
-        private void Theme_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            UpdateBitmaps();
         }
 
         private void UpdateBitmaps()

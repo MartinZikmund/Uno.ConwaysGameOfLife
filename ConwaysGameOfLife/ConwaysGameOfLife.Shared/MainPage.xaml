@@ -2,41 +2,84 @@
     x:Class="ConwaysGameOfLife.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:ConwaysGameOfLife"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Microsoft.UI.Xaml.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:ConwaysGameOfLife"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Padding="12" RowSpacing="8" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid
+        Padding="12"
+        Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+        RowSpacing="8">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <TextBlock Text="Conway's Game of Life" TextAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="20" />
-        <Grid RowSpacing="8" ColumnSpacing="8" Grid.Row="1">
+        <TextBlock
+            FontSize="20"
+            Style="{ThemeResource HeaderTextBlockStyle}"
+            Text="Conway's Game of Life"
+            TextAlignment="Center" />
+        <Grid
+            Grid.Row="1"
+            ColumnSpacing="8"
+            RowSpacing="8">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="140" />
-                <ColumnDefinition Width="140" />
-                <ColumnDefinition Width="140" />
+                <ColumnDefinition Width="120" />
+                <ColumnDefinition Width="120" />
+                <ColumnDefinition Width="120" />
             </Grid.ColumnDefinitions>
-          
-            <Button Click="StartGame_Click" HorizontalAlignment="Stretch" CornerRadius="2" Content="Start new game" />
-            <Button Click="Randomize_Click" Grid.Column="1" HorizontalAlignment="Stretch" CornerRadius="2" Content="Randomize" />
-            <Button Click="NextGeneration_Click" Grid.Column="2" Content="Next generation" />
-          
-            <controls:NumberBox SpinButtonPlacementMode="Inline" x:Name="BoardSizeNumberBox" Minimum="3" Maximum="50" Value="10" Grid.Row="1" Header="Board size" />
-            <ComboBox x:Name="ThemeComboBox" ItemsSource="{x:Bind Themes}" SelectedItem="{x:Bind CurrentTheme, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" Header="Theme" HorizontalAlignment="Stretch" />
-            <ToggleSwitch x:Name="AutoPlayToggleSwitch" Toggled="AutoPlayToggleSwitch_OnToggled" Header="Auto-play" Grid.Column="2" Grid.Row="1"  />
-          
+
+            <Button
+                HorizontalAlignment="Stretch"
+                Click="{x:Bind StartNewGame}"
+                Content="Start new game" />
+            <Button
+                Grid.Column="1"
+                HorizontalAlignment="Stretch"
+                Click="{x:Bind Clear}"
+                Content="Clear" />
+            <Button
+                Grid.Column="2"
+                HorizontalAlignment="Stretch"
+                Click="{x:Bind NextGeneration}"
+                Content="Next generation" />
+
+            <controls:NumberBox
+                x:Name="BoardSizeNumberBox"
+                Grid.Row="1"
+                Header="Board size"
+                Maximum="50"
+                Minimum="3"
+                SpinButtonPlacementMode="Inline"
+                Value="10" />
+            <ComboBox
+                x:Name="ThemeComboBox"
+                Grid.Row="1"
+                Grid.Column="1"
+                HorizontalAlignment="Stretch"
+                Header="Theme"
+                ItemsSource="{x:Bind Themes}"
+                SelectedItem="{x:Bind CurrentTheme, Mode=TwoWay}" />
+            <ToggleSwitch
+                x:Name="AutoPlayToggleSwitch"
+                Grid.Row="1"
+                Grid.Column="2"
+                Header="Auto-play"
+                Toggled="{x:Bind AutoPlayToggled}" />
+
         </Grid>
-      
-        <Border SizeChanged="GameCanvasContainer_OnSizeChanged" Grid.Row="2" x:Name="GameCanvasContainer">
+
+        <Border
+            x:Name="GameCanvasContainer"
+            Grid.Row="2"
+            SizeChanged="{x:Bind LayoutGameBoard}">
             <Canvas x:Name="GameCanvas" />
         </Border>
     </Grid>

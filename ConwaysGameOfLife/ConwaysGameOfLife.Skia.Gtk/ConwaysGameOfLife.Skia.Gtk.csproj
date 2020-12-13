@@ -7,7 +7,6 @@
   </PropertyGroup>
   <ItemGroup Condition="exists('..\ConwaysGameOfLife.UWP')">
     <EmbeddedResource Include="..\ConwaysGameOfLife.UWP\Package.appxmanifest" LogicalName="Package.appxmanifest" />
-    <Content Include="..\ConwaysGameOfLife.UWP\Assets\StoreLogo.png" Link="Assets\StoreLogo.png" />
     <Content Include="Assets\Fonts\uno-fluentui-assets.ttf" />
   </ItemGroup>
   <ItemGroup>

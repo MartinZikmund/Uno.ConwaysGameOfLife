@@ -28,6 +28,17 @@ namespace ConwaysGameOfLife.Shared.Models
             }
         }
 
+        public void Clear()
+        {
+            for (int row = 0; row < Size; row++)
+            {
+                for (int column = 0; column < Size; column++)
+                {
+                    Cells[row, column] = CellState.Dead;
+                }
+            }
+        }
+
         private CellState[,] _nextGeneration = null;
 
         public void Tick()
