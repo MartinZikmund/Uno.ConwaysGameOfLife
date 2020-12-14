@@ -7,3 +7,7 @@ The Game of Life is an interesting yet simulation of the evolution of living ce
 A live demo of the app is [here](https://unogameoflife.azurewebsites.net/), running with Uno Platform WebAssembly under .NET 5 on Microsoft Azure.
 
 ![Game of Life in the browser](https://blog.mzikmund.com/wp-content/uploads/2020/12/webassembly.png)
+
+## License
+
+Licensed under MIT, feel free to fork, modify and play with the project however you like! But I will appreciate if you share creations with me on [Twitter](https://www.twitter.com/mzikmunddev) 😉.
